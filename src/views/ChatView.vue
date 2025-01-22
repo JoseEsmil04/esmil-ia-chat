@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-gray-100 h-screen flex flex-col max-w-lg mx-auto">
+  <div class="bg-gray-100 w-screen flex flex-col max-w-lg mx-auto full-height full-height-ios-fix">
     <div
-      class="bg-gradient-to-r from-[#C04040] via-[#8063A7] to-[#3D536B] p-4 text-white flex justify-between items-center"
+      class="bg-gradient-to-r from-[#C04040] via-[#8063A7] to-[#3D536B] p-2 text-white flex justify-between items-center"
     >
-      <span class="font-bold font-mono">Esmil IA - Chat</span>
-      <img class="w-10 h-10" :src="JoseEsmilLogo" alt="Esmil Logo" />
+      <span class="font-bold font-mono">JE.ai - Chat</span>
+      <img class="w-10 h-10" :src="JELogo" alt="Esmil Logo" />
     </div>
 
     <ChatMessages :messages="messages" :provided-name="providedName" />
@@ -13,7 +13,7 @@
 </template>
 <script setup lang="ts">
 import ChatMessages from '@/components/ChatMessages.vue'
-import JoseEsmilLogo from '@/img/joseecampusanologowhite.webp'
+import JELogo from '@/img/JE.ai.webp'
 import MessagesBox from '@/components/MessagesBox.vue'
 import { geminiChat } from '@/helpers/gemini-chat'
 import { sleep } from '@/helpers/sleep'
@@ -88,3 +88,14 @@ const onMessage = async (text: string) => {
   }
 }
 </script>
+<style scoped>
+@supports (height: 100dvh) {
+  .full-height {
+    height: 100dvh; /* Usar el 100% del alto visible de la pantalla */
+  }
+}
+
+.full-height-ios-fix {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+</style>
