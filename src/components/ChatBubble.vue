@@ -7,7 +7,7 @@
   </div>
   <div v-else class="flex">
     <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs flex flex-col">
-      <p class="font-bold">ChatEsmil</p>
+      <p class="font-bold">JE</p>
       <span>{{ message }}</span>
     </div>
   </div>
