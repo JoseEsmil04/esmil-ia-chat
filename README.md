@@ -1,39 +1,71 @@
-# esmil-ai-chat
+# 🤖 Esmil AI Chat
 
-This template should help get you started developing with Vue 3 in Vite.
+Bienvenido a **Esmil AI Chat**, una aplicación de chat que simula una inteligencia artificial similar a **ChatGPT**, **Copilot** o **Gemini**. 🚀✨
 
-## Recommended IDE Setup
+Este proyecto utiliza la **API de IA de Gemini** para ofrecer respuestas inteligentes en una interfaz moderna construida con **Vue.js**, **TypeScript**, y **TailwindCSS**.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Type Support for `.vue` Imports in TS
+## 🛠️ Tecnologías utilizadas
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **Vue 3** ⚡ (Composition API con `script setup` y reactividad avanzada)
+- **TypeScript** 🏗️ (para un código más seguro y escalable)
+- **Tailwind CSS** 🎨 (para un diseño atractivo y responsive)
+- **Vite** 🚀 (para un entorno de desarrollo ultrarrápido)
+- **API de Gemini** 🤖 (para generación de respuestas inteligentes)
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 📦 Instalación y configuración
 
-## Project Setup
+Sigue estos pasos para ejecutar el proyecto en tu máquina local:
 
+### 1️⃣ Clonar el repositorio
+```sh
+git clone https://github.com/JoseEsmil04/esmil-ai-chat.git
+cd esmil-ai-chat
+```
+
+### 2️⃣ Instalar dependencias
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 3️⃣ Configurar variables de entorno 🌍
+Crea un archivo `.env` en la raíz del proyecto y agrega tu clave de API de Gemini:
+```env
+VITE_GEMINI_API_KEY=TU_CLAVE_AQUI
+```
 
+### 4️⃣ Ejecutar en modo desarrollo 🚀
 ```sh
 npm run dev
 ```
+Abre en tu navegador: `http://localhost:5173/`
 
-### Type-Check, Compile and Minify for Production
-
+### 5️⃣ Generar versión para producción
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
+### 6️⃣ Previsualizar build
 ```sh
-npm run lint
+npm run preview
 ```
+
+---
+
+## 📬 Contacto
+
+Si te interesa colaborar o tienes alguna pregunta, puedes encontrarme en:
+- **LinkedIn:** [Jose Esmi Campusano](https://www.linkedin.com/in/joseecampusano)
+- **GitHub:** [@JoseEsmil04](https://github.com/JoseEsmil04)
+- **Correo:** josecampusano0427@gmail.com
+
+📢 ¡Gracias por probar **Esmil AI Chat**! 😊
+
+---
+
+## 📜 Licencia
+
+Este proyecto está bajo la licencia **MIT**. Puedes ver más detalles en el archivo [`LICENSE`](LICENSE).
