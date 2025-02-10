@@ -27,9 +27,11 @@
 import ErrorAlert from '@/components/ErrorAlert.vue'
 import { ref } from 'vue'
 import JELogo from '@/img/JE.ai.webp'
+import { useRouter } from 'vue-router'
 
 const name = ref('')
 const alert = ref('')
+const router = useRouter()
 
 const emit = defineEmits<{
   checkNameInput: [text: string]
@@ -43,6 +45,7 @@ const checkNameInput = (name: string) => {
   }
 
   emit('checkNameInput', name)
+  router.push({ name: 'chat', params: { providedName: name } })
 }
 </script>
 

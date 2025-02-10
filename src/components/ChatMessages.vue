@@ -24,12 +24,14 @@ const props = defineProps<Props>()
 
 const chatRef = ref<HTMLDivElement | null>(null)
 
-watch(props.messages, () => {
+watch(props.messages, async () => {
   setTimeout(() => {
-    chatRef.value?.scrollTo({
-      top: chatRef.value.scrollHeight,
-      behavior: 'smooth',
-    })
-  }, 100)
+    if (chatRef.value && chatRef.value.scrollHeight > chatRef.value.clientHeight) {
+      chatRef.value.scrollTo({
+        top: chatRef.value.scrollHeight,
+        behavior: 'smooth',
+      })
+    }
+  }, 150)
 })
 </script>
