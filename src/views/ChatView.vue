@@ -7,7 +7,7 @@
       <img class="w-10 h-10" :src="JELogo" alt="Esmil Logo" />
     </div>
 
-    <ChatMessages :messages="messages" :provided-name="providedName" />
+    <ChatMessages :messages="messages" />
     <MessagesBox @send-message="onMessage" />
   </div>
 </template>
@@ -20,12 +20,6 @@ import { sleep } from '@/helpers/sleep'
 import type { ChatMessage } from '@/interfaces/chat-message.interface'
 import type { Content } from '@google/generative-ai'
 import { onMounted, ref, watch } from 'vue'
-
-interface Props {
-  providedName: string
-}
-
-defineProps<Props>()
 
 const messages = ref<ChatMessage[]>([])
 const conversationHistory = ref<Content[]>([])

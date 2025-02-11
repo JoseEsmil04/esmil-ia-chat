@@ -1,7 +1,7 @@
 <template>
   <div v-if="itsMine" class="flex justify-end">
     <div class="bg-[#F8AFA6] text-black p-2 rounded-lg max-w-xs">
-      <p class="font-bold">{{ providedName }}</p>
+      <p class="font-bold">{{ store.providedName }}</p>
       <span>{{ message }}</span>
     </div>
   </div>
@@ -14,11 +14,14 @@
 </template>
 
 <script setup lang="ts">
+import { useChatStore } from '@/stores/useChatStore'
+
+const store = useChatStore()
+
 interface Props {
   id: number
   message: string
   itsMine: boolean
-  providedName: string
 }
 
 defineProps<Props>()
