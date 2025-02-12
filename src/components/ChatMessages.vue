@@ -1,30 +1,32 @@
 <template>
-  <div ref="chatRef" class="flex-1 overflow-y-auto p-4">
+  <div ref="chatRef" class="flex-1 overflow-y-auto p-4 chatDiv">
     <div class="flex flex-col space-y-2">
       <ChatBubble v-for="message in messages" :key="message.id" v-bind="message" />
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
+import { ref, onUpdated } from 'vue'
 import type { ChatMessage } from '@/interfaces/chat-message.interface'
 import ChatBubble from './ChatBubble.vue'
-import { ref, watch, nextTick } from 'vue'
 
 interface Props {
   messages: ChatMessage[]
 }
 
-const props = defineProps<Props>()
-
+defineProps<Props>()
 const chatRef = ref<HTMLDivElement | null>(null)
 
-watch(props.messages, async () => {
-  await nextTick()
-  if (chatRef.value && chatRef.value.scrollHeight > chatRef.value.clientHeight) {
-    chatRef.value.scrollTo({
-      top: chatRef.value.scrollHeight,
-      behavior: 'smooth',
-    })
+onUpdated(() => {
+  if (chatRef.value) {
+    chatRef.value.scrollTop = chatRef.value.scrollHeight
   }
 })
 </script>
+<style scoped>
+.chatDiv {
+  scroll-behavior: smooth;
+}
+
+</style>
