@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import type { ChatMessage } from '@/interfaces/chat-message.interface'
 import ChatBubble from './ChatBubble.vue'
-import { ref, watch } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 
 interface Props {
   messages: ChatMessage[]
@@ -19,13 +19,12 @@ const props = defineProps<Props>()
 const chatRef = ref<HTMLDivElement | null>(null)
 
 watch(props.messages, async () => {
-  setTimeout(() => {
-    if (chatRef.value && chatRef.value.scrollHeight > chatRef.value.clientHeight) {
-      chatRef.value.scrollTo({
-        top: chatRef.value.scrollHeight,
-        behavior: 'smooth',
-      })
-    }
-  }, 150)
+  await nextTick()
+  if (chatRef.value && chatRef.value.scrollHeight > chatRef.value.clientHeight) {
+    chatRef.value.scrollTo({
+      top: chatRef.value.scrollHeight,
+      behavior: 'smooth',
+    })
+  }
 })
 </script>
