@@ -28,7 +28,7 @@ import ErrorAlert from '@/components/ErrorAlert.vue'
 import { ref } from 'vue'
 import JELogo from '@/img/JE.ai.webp'
 import { useRouter } from 'vue-router'
-import { useChatStore } from '@/stores/useChatStore'
+import { useChatStore } from '@/stores/chat.store'
 
 const name = ref('')
 const alert = ref('')

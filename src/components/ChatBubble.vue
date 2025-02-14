@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { useChatStore } from '@/stores/useChatStore'
+import { useChatStore } from '@/stores/chat.store'
 
 const store = useChatStore()
 
