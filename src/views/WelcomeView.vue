@@ -43,7 +43,7 @@ const checkNameInput = (name: string) => {
   }
 
   chatStore.setName(name)
-  router.push({ name: 'chat' })
+  router.push({ name: 'chat', params: { name } })
 }
 </script>
 

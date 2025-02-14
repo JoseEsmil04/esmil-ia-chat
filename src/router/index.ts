@@ -9,12 +9,20 @@ const router = createRouter({
       component: () => import('@/views/WelcomeView.vue'),
     },
     {
-      path: '/chat',
+      path: '/chat/:name?',
       name: 'chat',
       component: () => import('@/views/ChatView.vue'),
       props: true,
-    },
+      beforeEnter: (to, from, next) => {
+        if (!to.params.name) {
+          next({ name: 'home' });
+        } else {
+          next();
+        }
+      },
+    },    
   ],
 })
+
 
 export default router
