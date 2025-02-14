@@ -3,8 +3,8 @@ import { GoogleGenerativeAI, type Content } from '@google/generative-ai'
 export const geminiChat = async (key: string, initialHistory: Content[]) => {
   const genAI = new GoogleGenerativeAI(key)
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
-    systemInstruction: 'Eres EsmilAI, una IA desarrollada por Jose Esmi Campusano',
+    model: 'gemini-2.0-flash',
+    systemInstruction: 'Eres JE.ai, una IA desarrollada por Jose Esmi Campusano',
   })
 
   const chat = model.startChat({ history: initialHistory })
