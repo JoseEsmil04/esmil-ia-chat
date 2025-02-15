@@ -1,21 +1,22 @@
 <template>
   <div ref="chatRef" class="flex-1 overflow-y-auto p-4 chatDiv">
     <div class="flex flex-col space-y-2">
-      <ChatBubble v-for="message in messages" :key="message.id" v-bind="message" />
+      <ChatBubble 
+        v-for="message in chatStorage.getMessages" 
+        :key="message.id" 
+        v-bind="message"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onUpdated } from 'vue'
-import type { ChatMessage } from '@/interfaces/chat-message.interface'
+import { useChatStore } from '@/stores/chat.store'
 import ChatBubble from './ChatBubble.vue'
 
-interface Props {
-  messages: ChatMessage[]
-}
 
-defineProps<Props>()
+const chatStorage = useChatStore()
 const chatRef = ref<HTMLDivElement | null>(null)
 
 onUpdated(() => {
@@ -24,9 +25,8 @@ onUpdated(() => {
   }
 })
 </script>
-<style scoped>
+<style>
 .chatDiv {
   scroll-behavior: smooth;
 }
-
 </style>

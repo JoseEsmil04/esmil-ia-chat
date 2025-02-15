@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col w-screen h-screen items-center justify-center">
-    <img :src="JELogo" class="h-32 w-32 rounded-xl" />
-    <ErrorAlert class="mt-5" v-if="alert">{{ alert }}</ErrorAlert>
-    <label class="m-2 text-[#3D536B] font-bold text-3xl text-center" for="name"
+    <img :src="JELogo" class="h-32 w-32 rounded-full" />
+    <ErrorAlert v-if="alert">{{ alert }}</ErrorAlert>
+    <label v-else class="m-2 text-[#3D536B] font-bold text-3xl text-center" for="name"
       >Introduce tu nombre para continuar</label
     >
     <input
@@ -24,11 +24,11 @@
 </template>
 
 <script setup lang="ts">
-import ErrorAlert from '@/components/ErrorAlert.vue'
-import { ref } from 'vue'
-import JELogo from '@/img/JE.ai.webp'
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 import { useChatStore } from '@/stores/chat.store'
+import ErrorAlert from '@/components/ErrorAlert.vue'
+import JELogo from '@/img/JE.ai-logo.webp'
 
 const name = ref('')
 const alert = ref('')
@@ -46,5 +46,3 @@ const checkNameInput = (name: string) => {
   router.push({ name: 'chat', params: { name } })
 }
 </script>
-
-<style scoped></style>

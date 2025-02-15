@@ -1,14 +1,14 @@
 <template>
-  <div class="bg-white p-4 flex items-center">
+  <div class="bg-[#352c43] p-4 flex items-center">
     <input
       type="text"
-      placeholder="Type your message..."
-      class="flex-1 border rounded-full px-4 py-2 focus:outline-none"
+      placeholder="Escribe tu mensaje..."
+      class="flex-1 border border-none rounded-md bg-[#5b4a72] text-white px-4 py-2 focus:outline-none placeholder-[#f0f0f0be]"
       v-model="message"
       @keypress.enter="sendMessage"
     />
     <button
-      class="bg-[#8063A7] hover:bg-[#3D536B] text-white rounded-full p-2 ml-2 focus:outline-none transition-all duration-300 transform hover:shadow-lg hover:shadow-[#3D536B]/50"
+      class="bg-[#8063A7] hover:bg-[#e27c4b] text-white rounded-full p-2 ml-2 focus:outline-none transition-all duration-300 transform hover:shadow-lg hover:shadow-[#3D536B]/50"
       @click="sendMessage"
     >
       <svg
