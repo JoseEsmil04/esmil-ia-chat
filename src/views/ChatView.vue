@@ -16,7 +16,7 @@ import { useChatStore } from '@/stores/chat.store'
 import { sleep } from '@/helpers/sleep'
 import ChatMessages from '@/components/ChatMessages.vue'
 import MessagesBox from '@/components/MessagesBox.vue'
-import JELogo from '@/images/JE.ai-logov2.webp'
+import JELogo from '@/images/je.ai-logov2.webp'
 
 const chatStorage = useChatStore();
 
