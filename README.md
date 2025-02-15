@@ -1,6 +1,10 @@
-# 🤖 Esmil AI Chat
 
-Bienvenido a **Esmil AI Chat**, una aplicación de chat que simula una inteligencia artificial similar a **ChatGPT**, **Copilot** o **Gemini**. 🚀✨
+<p align="center">
+  <img style="border-radius: 50%;" src="src/images/je.ai-logo.webp" alt="Texto alternativo" width="300"/>
+</p>
+<h1 align="center">JE.ai Chat</h1>
+
+Bienvenido a **Esmil AI Chat**, una aplicación de chat que simula una inteligencia artificial similar a **ChatGPT**, **Copilot** o **Gemini**. 🚀✨🤖 
 
 Este proyecto utiliza la **API de IA de Gemini** para ofrecer respuestas inteligentes en una interfaz moderna construida con **Vue.js**, **TypeScript**, y **TailwindCSS**.
 
