@@ -1,29 +1,35 @@
-import { GoogleGenerativeAI, type Content } from '@google/generative-ai'
+import type { GeminiChatOptions } from '@/interfaces/geminiChat-options.interface'
+import { GoogleGenAI, type Content } from '@google/genai'
 
-export const geminiChat = async (key: string, initialHistory: Content[]) => {
-  const genAI = new GoogleGenerativeAI(key)
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-2.0-flash',
-    systemInstruction: 'Eres JE.ai, una IA desarrollada por Jose Esmi Campusano',
+export const geminiChat = ({
+  apiKey,
+  model = 'gemini-2.5-flash',
+  initialHistory = [],
+  providedName,
+}: GeminiChatOptions) => {
+  const ai = new GoogleGenAI({ apiKey })
+
+  const localHistory: Content[] = [...initialHistory]
+
+  const chat = ai.chats.create({
+    model,
+    history: initialHistory,
+    config: {
+      systemInstruction: `Eres JE.ai, una IA desarrollada por Jose Esmi Campusano y el nombre del usuario es: ${providedName}.`,
+    },
   })
 
-  const chat = model.startChat({ history: initialHistory })
-
   const sendMessage = async (userMessage: string) => {
-    ;(await chat.getHistory()).push({
-      role: 'user',
-      parts: [{ text: userMessage }],
-    })
+    localHistory.push({ role: 'user', parts: [{ text: userMessage }] })
+    const res = await chat.sendMessage({ message: userMessage })
 
-    const result = await chat.sendMessage(userMessage)
+    const text = res.text ?? ''
+    localHistory.push({ role: 'model', parts: [{ text }] })
 
-    ;(await chat.getHistory()).push({
-      role: 'model',
-      parts: [{ text: result.response.text() }],
-    })
-
-    return result.response.text()
+    return text
   }
 
-  return { chat, sendMessage }
+  const getHistory = () => [...localHistory]
+
+  return { chat, sendMessage, getHistory }
 }

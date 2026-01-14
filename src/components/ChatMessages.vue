@@ -6,6 +6,9 @@
         :key="message.id" 
         v-bind="message"
       />
+    <div v-if="chatStorage.getIsTyping" class="flex justify-start">
+      <TypingIndicator />
+    </div>
     </div>
   </div>
 </template>
@@ -14,6 +17,7 @@
 import { ref, onUpdated } from 'vue'
 import { useChatStore } from '@/stores/chat.store'
 import ChatBubble from './ChatBubble.vue'
+import TypingIndicator from './TypingIndicator.vue'
 
 
 const chatStorage = useChatStore()

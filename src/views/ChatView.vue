@@ -11,40 +11,42 @@
   </div>
 </template>
 <script setup lang="ts">
-import { geminiChat } from '@/plugins/gemini-chat'
-import { useChatStore } from '@/stores/chat.store'
-import { sleep } from '@/helpers/sleep'
-import ChatMessages from '@/components/ChatMessages.vue'
-import MessagesBox from '@/components/MessagesBox.vue'
-import JELogo from '@/images/je.ai-logov2.webp'
+import { geminiChat } from "@/plugins/gemini-chat";
+import { useChatStore } from "@/stores/chat.store";
+import { sleep } from "@/helpers/sleep";
+import ChatMessages from "@/components/ChatMessages.vue";
+import MessagesBox from "@/components/MessagesBox.vue";
+import JELogo from "@/images/je.ai-logov2.webp";
 
 const chatStorage = useChatStore();
 
-const onMessage = async (text: string) => {
-  const { sendMessage } = await geminiChat(
-    import.meta.env.VITE_GEMINI_API_KEY,
-    chatStorage.conversationHistory,
-  )
-  if (text.length === 0) return
 
-  chatStorage.saveMessage(text, true)
+const onMessage = async (text: string) => {
+  const { sendMessage } = geminiChat({
+    apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+    initialHistory: chatStorage.conversationHistory,
+    providedName: chatStorage.providedName
+  });
+
+  const trimmed = text.trim();
+  if (!trimmed) return;
+
+  chatStorage.saveMessage(trimmed, true);
+  chatStorage.setTyping(true)
 
   try {
-    const aiResponse = await sendMessage(text)
+    const aiResponse = await sendMessage(trimmed);
+    await sleep(1);
 
-    chatStorage.conversationHistory.push(
-      { role: 'user', parts: [{ text }] },
-      { role: 'model', parts: [{ text: aiResponse }] },
-    )
-
-    await sleep(1)
-
-    chatStorage.saveMessage(aiResponse, false)
+    chatStorage.saveMessage(aiResponse, false);
   } catch (error) {
-    console.error('Error al procesar el mensaje:', error)
+    console.error("Error al procesar el mensaje:", error);
+  } finally {
+    chatStorage.setTyping(false)
   }
-}
+};
 </script>
+
 <style scoped>
 @supports (height: 100dvh) {
   .full-height {
